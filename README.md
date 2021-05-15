@@ -43,6 +43,7 @@ Usage:
 Available Commands:
   download    Download a file efficiently
   help        Help about any command
+  unzip       
 
 Flags:
       --config string   config file (default is /.ops.yaml)
