@@ -64,6 +64,7 @@ Use "ops [command] --help" for more information about a command.
 1. Build
    ```bash
    docker build -t unfor19/ops .
+   # docker build -t unfor19/ops -f Dockerfile.scratch .
    ```
 2. Run
    ```bash

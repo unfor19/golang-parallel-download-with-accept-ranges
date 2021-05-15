@@ -2,7 +2,7 @@ ARG GO_VERSION=1.16.3
 ARG APP_VENDOR=
 ARG REPO_NAME=""
 ARG APP_NAME="ops"
-ARG APP_PATH="/usr/local/go/src/ops"
+ARG APP_PATH="/usr/local/go/src/github.com/unfor19/ops"
 ARG APP_USER="appuser"
 ARG APP_GROUP="appgroup"
 # Target executable file:  /app/ops
