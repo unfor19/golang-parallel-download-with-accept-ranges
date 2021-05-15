@@ -63,11 +63,11 @@ Use "ops [command] --help" for more information about a command.
     ```
 1. Build
    ```bash
-   docker build -t ops .
+   docker build -t unfor19/ops .
    ```
 2. Run
    ```bash
-   docker run --rm -it ops
+   docker run --rm -it unfor19/ops
    ```
 
 ## Dependencies
