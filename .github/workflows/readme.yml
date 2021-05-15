@@ -18,7 +18,7 @@ jobs:
           go install
       - name: Prepare source file
         run: |
-          echo "\`\`\`bash" > .help
+          echo "\`\`\`" > .help
           ops --help >> .help
           echo -n "\`\`\`" >> .help
       - uses: unfor19/replacer-action@v1.0.3
