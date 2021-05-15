@@ -71,37 +71,12 @@ Use "ops [command] --help" for more information about a command.
    docker run --rm -it unfor19/ops
    ```
 
-## Dependencies
+## Authors
 
-[pb](github.com/cheggaaa/pb) - show multiple progress bar
+Created and maintained by [Meir Gabay](https://github.com/unfor19)
 
-```bash
-go get github.com/cheggaaa/pb
-```
+This project is based on - [jacklin293/golang-parallel-download-with-accept-ranges](https://github.com/jacklin293/golang-parallel-download-with-accept-ranges)
 
-## Older README.md leftovers
+## License
 
-<details>
-
-<summary>Expand/Collapse</summary>
-
-# Compile command
-
-mac
-
-    GOOS=darwin GOARCH=amd64 go build -o download.command
-
-windows
-
-    GOOS=windows GOARCH=amd64 go build -o download.exe
-
-# FIXME
-
-* File's body download on windows is different from one on mac. (e.g. mp4)
-
-# TODO
-
-* Support request header
-
-
-</details>
+This project is licensed under the Apache License - see the [LICENSE](https://github.com/unfor19/ops/blob/master/LICENSE) file for details
