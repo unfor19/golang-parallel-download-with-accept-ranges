@@ -18,6 +18,8 @@ jobs:
         include:
           - GHCR_CACHED_TAG_PREFIX: "ghcr.io/unfor19/ops:cached-master"
             DOCKERFILE_PATH: Dockerfile
+          - GHCR_CACHED_TAG_PREFIX: "ghcr.io/unfor19/ops:cached-master-scratch"
+            DOCKERFILE_PATH: Dockerfile.scratch
     steps:
       - uses: actions/checkout@v2
       - name: Inject slug/short variables
@@ -62,6 +64,11 @@ jobs:
           - GHCR_CACHED_TAG_PREFIX: "ghcr.io/unfor19/ops:cached-master"
             DOCKERFILE_PATH: Dockerfile
             DOCKERHUB_TAG_PREFIX: "unfor19/ops"
+            DOCKERHUB_TAG_SUFFIX: ""
+          - GHCR_CACHED_TAG_PREFIX: "ghcr.io/unfor19/ops:cached-master"
+            DOCKERFILE_PATH: Dockerfile.scratch
+            DOCKERHUB_TAG_PREFIX: "unfor19/ops"
+            DOCKERHUB_TAG_SUFFIX: "-scratch"
     steps:
       - uses: actions/checkout@v2
       - name: Inject slug/short variables
@@ -69,7 +76,7 @@ jobs:
       - name: Set env vars
         run: |
           export RELEASE_VERSION=${GITHUB_REF_SLUG}
-          export DOCKERHUB_TAG="${{ matrix.DOCKERHUB_TAG_PREFIX }}:${RELEASE_VERSION}"
+          export DOCKERHUB_TAG="${{ matrix.DOCKERHUB_TAG_PREFIX }}:${RELEASE_VERSION}${{ matrix.DOCKERHUB_TAG_SUFFIX }}"
           echo "DOCKERHUB_TAG=${DOCKERHUB_TAG}" >> $GITHUB_ENV
       - name: docker pull cached from ghcr
         run: |
