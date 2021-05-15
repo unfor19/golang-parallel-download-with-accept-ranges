@@ -34,7 +34,7 @@ Available commands
 
 <!-- available_commands_start -->
 
-```bash
+```
 A CLI for DevOps Engineers
 
 Usage:
