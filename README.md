@@ -4,7 +4,7 @@
 
 ## Features
 
-- Download a file using efficiently with [Accept-Ranges](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests)
+- Download a file efficiently with [Accept-Ranges](https://developer.mozilla.org/en-US/docs/Web/HTTP/Range_requests)
 - Unzip file
 
 ## Requirements
