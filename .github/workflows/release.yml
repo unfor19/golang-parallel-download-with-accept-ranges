@@ -65,7 +65,7 @@ jobs:
             DOCKERFILE_PATH: Dockerfile
             DOCKERHUB_TAG_PREFIX: "unfor19/ops"
             DOCKERHUB_TAG_SUFFIX: ""
-          - GHCR_CACHED_TAG_PREFIX: "ghcr.io/unfor19/ops:cached-master"
+          - GHCR_CACHED_TAG_PREFIX: "ghcr.io/unfor19/ops:cached-master-scratch"
             DOCKERFILE_PATH: Dockerfile.scratch
             DOCKERHUB_TAG_PREFIX: "unfor19/ops"
             DOCKERHUB_TAG_SUFFIX: "-scratch"
