@@ -1,5 +1,7 @@
 # ops
 
+[![Dockerhub pulls](https://img.shields.io/docker/pulls/unfor19/ops)](https://hub.docker.com/r/unfor19/ops)
+
 **Work In Progress**- An attempt to create an application that serves as a one-stop-shop for DevOps Engineers.
 
 ## Features
