@@ -44,8 +44,8 @@ func init() {
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	downloadCmd.PersistentFlags().String("foo", "", "A help for foo")
 	downloadCmd.PersistentFlags().StringVarP(&Url, "url", "u", "", "Download URL")
+	_ = downloadCmd.MarkPersistentFlagRequired("url")
 	downloadCmd.PersistentFlags().BoolP("remove-existing", "r", false, "Remove file if exists")
 	downloadCmd.PersistentFlags().Int64P("parts-count", "c", 4, "Use http-ranges (if supported) and divide to multiple of parts.")
 	// Cobra supports local flags which will only run when this command
@@ -62,10 +62,6 @@ var downloadCmd = &cobra.Command{
 		partsCount, err := cmd.Flags().GetInt64("parts-count")
 		if err != nil {
 			log.Fatal(err)
-		}
-		if Url == "" {
-			// downloadUrl = "https://github.com/helm/helm/archive/refs/tags/v3.5.4.zip"
-			Url = "https://releases.hashicorp.com/terraform/0.15.3/terraform_0.15.3_linux_amd64.zip"
 		}
 		removeExisting, err := cmd.Flags().GetBool("remove-existing")
 		if err != nil {
