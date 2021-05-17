@@ -179,7 +179,8 @@ func downloadFunc(downloadUrl string, partsCount int64, removeExisting bool) {
 		handleError(err)
 	}
 	worker.SyncWG.Wait()
-	worker.Progress.Pool.Stop()
+	_ = worker.Progress.Pool.Stop()
+
 	worker.File.Close() // final close
 	log.Println("Elapsed time:", time.Since(now))
 	log.Println("Done!")
@@ -237,11 +238,11 @@ func (w *Worker) writeRange(part_num int64, start int64, end int64) {
 				if size == written {
 					// Download successfully
 				} else {
-					handleError(errors.New(fmt.Sprintf("Part %d unfinished.\n", part_num)))
+					handleError(fmt.Errorf("part %d unfinished", part_num))
 				}
 				break
 			}
-			handleError(errors.New(fmt.Sprintf("Part %d occured error: %s\n", part_num, er.Error())))
+			handleError(fmt.Errorf("part %d occured error: %s", part_num, er.Error()))
 		}
 	}
 }

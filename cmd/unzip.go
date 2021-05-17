@@ -59,10 +59,10 @@ func init() {
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
 	unzipCmd.PersistentFlags().StringP("src", "s", "", "Source archive")
-	unzipCmd.MarkPersistentFlagRequired("src")
+	_ = unzipCmd.MarkPersistentFlagRequired("src")
 
 	unzipCmd.PersistentFlags().StringP("dst", "d", "", "Target dir")
-	unzipCmd.MarkPersistentFlagRequired("dst")
+	_ = unzipCmd.MarkPersistentFlagRequired("dst")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
@@ -85,7 +85,7 @@ func unzipFunc(src string, dest string) error {
 		}
 	}()
 
-	os.MkdirAll(dest, 0755)
+	_ = os.MkdirAll(dest, 0755)
 
 	// Closure to address file descriptors issue with all the deferred .Close() methods
 	extractAndWriteFile := func(f *zip.File) error {
@@ -109,9 +109,9 @@ func unzipFunc(src string, dest string) error {
 		}
 
 		if f.FileInfo().IsDir() {
-			os.MkdirAll(path, f.Mode())
+			_ = os.MkdirAll(path, f.Mode())
 		} else {
-			os.MkdirAll(filepath.Dir(path), f.Mode())
+			_ = os.MkdirAll(filepath.Dir(path), f.Mode())
 			f, err := os.OpenFile(path, os.O_RDWR|os.O_CREATE|os.O_TRUNC, f.Mode())
 			if err != nil {
 				return err
