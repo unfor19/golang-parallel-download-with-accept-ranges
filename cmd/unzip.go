@@ -43,7 +43,7 @@ var unzipCmd = &cobra.Command{
 		}
 
 		log.Println("Unzipping", src, "to", dst)
-		unzipError := Unzip(src, dst)
+		unzipError := unzipFunc(src, dst)
 		if unzipError != nil {
 			log.Fatal(unzipError)
 		}
@@ -70,7 +70,7 @@ func init() {
 }
 
 // Source: https://stackoverflow.com/a/24792688/5285732
-func Unzip(src string, dest string) error {
+func unzipFunc(src string, dest string) error {
 	// src - zip file
 	// dest -  auto creates target directory and extracts the files to it
 	r, err := zip.OpenReader(src)
