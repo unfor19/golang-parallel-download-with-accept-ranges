@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@ebc78f9b2fcd19a74da6a693bc1419e3313167a8
+        uses: golangci/golangci-lint-action@d9309c3ecdb777ce8edd9ad960b9f79a25482fe5
         with:
           version: v2.5.2
           # skip-pkg-cache: true
