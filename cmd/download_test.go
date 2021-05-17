@@ -9,7 +9,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-var downloadUrl = "https://github.com/unfor19/ops/releases/download/0.0.11rc/ops_0.0.11rc_linux_amd64"
+var downloadUrl string = "https://github.com/unfor19/ops/releases/download/0.0.11rc/ops_0.0.11rc_linux_amd64"
 var fileName string = getFileName(downloadUrl)
 
 func DownloadTestsCleanup() {
