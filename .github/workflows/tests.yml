@@ -23,6 +23,9 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: "^1.16.1"
+      - name: Install CLI
+        run: |
+          go install
       - name: Go Test
         run: |
           go test ./cmd -v
