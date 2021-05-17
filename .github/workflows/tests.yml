@@ -12,5 +12,5 @@ jobs:
         uses: golangci/golangci-lint-action@v2
         with:
           version: v2.5.2
-          skip-pkg-cache: true
-          skip-build-cache: true
+          # skip-pkg-cache: true
+          # skip-build-cache: true
