@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"runtime"
 	"testing"
 )
 
@@ -17,8 +18,11 @@ func DownloadTestsCleanup() {
 func TestDownload(t *testing.T) {
 	DownloadTestsCleanup()
 	cmd := exec.Command("ops", "download", "-u", downloadUrl)
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
+	if runtime.GOOS != "windows" {
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+	}
+
 	err := cmd.Run()
 	if err != nil {
 		log.Fatalf("download file failed with:\n%s\n", err)
@@ -28,8 +32,10 @@ func TestDownload(t *testing.T) {
 func TestDownloadExists(t *testing.T) {
 	DownloadTestsCleanup()
 	cmd := exec.Command("ops", "download", "-u", downloadUrl)
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
+	if runtime.GOOS != "windows" {
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+	}
 	err := cmd.Run()
 	if err != nil {
 		log.Fatalf("download first attempt failed with:\n%s\n", err)
