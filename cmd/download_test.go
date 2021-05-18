@@ -12,7 +12,10 @@ var downloadUrl string = "https://github.com/unfor19/ops/releases/download/0.0.1
 var fileName string = getFileName(downloadUrl)
 
 func DownloadTestsCleanup() {
-	os.Remove(fileName)
+	err := os.Remove(fileName)
+	if err != nil {
+		log.Fatalf("Failed to remove file with error\n%s", err)
+	}
 }
 
 func TestDownload(t *testing.T) {
