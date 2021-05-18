@@ -5,8 +5,6 @@ import (
 	"os"
 	"os/exec"
 	"testing"
-
-	"github.com/pkg/errors"
 )
 
 var downloadUrl string = "https://github.com/unfor19/ops/releases/download/0.0.11rc/ops_0.0.11rc_linux_amd64"
@@ -18,34 +16,46 @@ func DownloadTestsCleanup() {
 
 func TestDownload(t *testing.T) {
 	DownloadTestsCleanup()
-	if err := exec.Command("ops", "download", "-u", downloadUrl).Run(); err != nil {
-		log.Print(errors.Wrap(err, "downloading a file").Error())
-		os.Exit(1)
+	cmd := exec.Command("ops", "download", "-u", downloadUrl)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Run()
+	if err != nil {
+		log.Fatalf("download file failed with:\n%s\n", err)
 	}
 }
 
 func TestDownloadExists(t *testing.T) {
 	DownloadTestsCleanup()
-	if err := exec.Command("ops", "download", "-u", downloadUrl).Run(); err != nil {
-		log.Print(errors.Wrap(err, "downloading first attempt").Error())
-		os.Exit(1)
+	cmd := exec.Command("ops", "download", "-u", downloadUrl)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Run()
+	if err != nil {
+		log.Fatalf("download first attempt failed with:\n%s\n", err)
 	}
 
-	if err := exec.Command("ops", "download", "-u", downloadUrl).Run(); err != nil {
-		log.Println("error downloading second attempt")
-		os.Exit(0)
+	err = cmd.Run()
+	if err != nil {
+		log.Println("Should not be able to download an existing file")
+	} else {
+		log.Fatalf("Should fail when attempting to download an existing file")
 	}
 }
 
 func TestDownloadRemoveExists(t *testing.T) {
 	DownloadTestsCleanup()
-	if err := exec.Command("ops", "download", "-u", downloadUrl).Run(); err != nil {
-		log.Print(errors.Wrap(err, "first attempt").Error())
-		os.Exit(1)
+	cmd := exec.Command("ops", "download", "-u", downloadUrl)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Run()
+	if err != nil {
+		log.Fatalf("download first attempt failed with:\n%s\n", err)
 	}
 
-	if err := exec.Command("ops", "download", "-u", downloadUrl, "--remove-existing").Run(); err != nil {
-		log.Print(errors.Wrap(err, "using remove exists flag").Error())
-		os.Exit(1)
+	cmd = exec.Command("ops", "download", "-u", downloadUrl, "--remove-existing")
+	err = cmd.Run()
+	if err != nil {
+		log.Fatalf("using remove exists flag\n%s\n", err)
 	}
 }
