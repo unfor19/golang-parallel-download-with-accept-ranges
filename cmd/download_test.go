@@ -14,7 +14,7 @@ var fileName string = getFileName(downloadUrl)
 func DownloadTestsCleanup() {
 	err := os.Remove(fileName)
 	if err != nil {
-		log.Fatalf("Failed to remove file with error\n%s", err)
+		log.Println("Warning, did to remove existing file file")
 	}
 }
 
