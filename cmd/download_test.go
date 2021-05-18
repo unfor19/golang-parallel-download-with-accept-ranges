@@ -1,10 +1,12 @@
 package cmd
 
 import (
+	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
 	"runtime"
+	"syscall"
 	"testing"
 )
 
@@ -21,7 +23,15 @@ func DownloadTestsCleanup() {
 func TestDownload(t *testing.T) {
 	DownloadTestsCleanup()
 	cmd := exec.Command("ops", "download", "-u", downloadUrl)
-	if runtime.GOOS != "windows" {
+	if runtime.GOOS == "windows" {
+		outputFile, err := ioutil.TempFile("", ".*")
+		if err != nil {
+			log.Fatalf("Failed to create temp dir\n%s\n", err)
+		}
+
+		cmd.Stdout = os.NewFile(uintptr(syscall.Stdout), outputFile.Name())
+		cmd.Stderr = os.NewFile(uintptr(syscall.Stderr), outputFile.Name())
+	} else {
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 	}
