@@ -308,7 +308,7 @@ func handleError(err error) {
 }
 
 func blockForWindows() { // Prevent windows from closing exe window.
-	if runtime.GOOS == "windows" {
+	if runtime.GOOS == "windows" && os.Getenv("CI") != "true" {
 		for {
 			log.Println("[Press `Ctrl+C` key to exit...]")
 			time.Sleep(10 * time.Second)
