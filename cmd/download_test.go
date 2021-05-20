@@ -35,7 +35,7 @@ func TestDownload(t *testing.T) {
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 	}
-
+	log.Println("Downloading ...")
 	err := cmd.Run()
 	if err != nil {
 		log.Fatalf("download file failed with:\n%s\n", err)
